@@ -35,6 +35,7 @@ let markdown_to_html s =
                   <h2 style=\"color: #eee\" >%s</h2></div>"
             (omd_to_html h1)
         in
+        global_title := Omd.to_text h1;
         Some new_slide
       | H3 h3 ->
         Some (sprintf "</section><section><h3>%s</h3>" (omd_to_html h3))
@@ -158,7 +159,7 @@ let () =
   let output = Buffer.create 42 in
   let apply_variables =
     function
-    | "template_head_title" -> "The Title"
+    | "template_head_title" -> !global_title
     | "template_body" -> html
     | other ->
       eprintf "Warning: unkown variable: %S\n%!" other;
