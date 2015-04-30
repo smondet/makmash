@@ -6,6 +6,13 @@ Make Markdown Slides Hackishly.
 For now the template is for Mount Sinai branded slides, this may be
 parametrizable one day.
 
+Install With Opam
+-----------------
+
+Use `pin`:
+
+    opam pin add makmash https://github.com/smondet/makmash.git
+
 Build
 -----
 

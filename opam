@@ -1,0 +1,18 @@
+opam-version: "1"
+maintainer: "seb@mondet.org"
+ocaml-version: [ >= "4.01.0" ]
+build: [
+  [mk]
+  ["cp" "makmash" bin]
+]
+remove: [
+  ["rm" "-f" "%{bin}%/makmash"]
+]
+depends: [
+  "ocamlfind"
+  "sosa" "nonstd"
+  "ppx_blob"
+  "omd"
+  "higlo"
+]
+
