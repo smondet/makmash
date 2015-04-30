@@ -190,7 +190,7 @@ let () =
         let from = Filename.dirname input_file in
         cmdf "mkdir -p %s"
           Filename.(concat Sys.argv.(2) src |> dirname |> quote);
-        cmdf "cp %s %s"
+        cmdf "cp -f %s %s"
           Filename.(concat from src |> quote)
           Filename.(concat Sys.argv.(2) src |> quote)
       end
