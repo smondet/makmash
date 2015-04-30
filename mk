@@ -12,7 +12,7 @@ build () {
         cp $file _build/$file
     done;
     cd _build
-    ocamlfind opt -package $findlib_packages -rectypes -linkpkg src/main.ml -o ../sinai-slides
+    ocamlfind opt -package $findlib_packages -rectypes -linkpkg src/main.ml -o ../makmash
 }
 merlinize () {
     echo "B _build" > .merlin
