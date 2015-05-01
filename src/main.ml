@@ -61,7 +61,9 @@ let markdown_to_html s =
       | Code_block (lang, code) ->
         let default () =
           let returned =
-            sprintf "<pre class=\"terminal\"><code>%s</code></pre>" code in
+            sprintf
+              "<pre class=\"terminal\"><code class=\"normal\">%s</code></pre>"
+              code in
           Some returned in
         begin match String.split ~on:(`Character ',') lang with
         | "commands" :: more ->
