@@ -2,7 +2,7 @@ opam-version: "1"
 maintainer: "seb@mondet.org"
 ocaml-version: [ >= "4.01.0" ]
 build: [
-  [mk]
+  ["./mk"]
   ["cp" "makmash" bin]
 ]
 remove: [
