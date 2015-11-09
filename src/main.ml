@@ -62,8 +62,10 @@ let markdown_to_html s =
         let default () =
           let returned =
             sprintf
-              "<pre class=\"terminal\"><code class=\"normal\">%s</code></pre>"
-              code in
+              "<pre class=\"terminal\"><code class=\"normal %s\">%s</code></pre>"
+              lang
+              (omd_to_html [Text code])
+          in
           Some returned in
         begin match String.split ~on:(`Character ',') lang with
         | "commands" :: more ->
