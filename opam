@@ -1,18 +1,20 @@
-opam-version: "1"
-maintainer: "seb@mondet.org"
-ocaml-version: [ >= "4.01.0" ]
-build: [
-  ["./mk"]
-  ["cp" "makmash" bin]
-]
-remove: [
-  ["rm" "-f" "%{bin}%/makmash"]
-]
+opam-version: "1.2"
+name: "makmash"
+version: "0.0.0"
+maintainer: "Sebastien Mondet <seb@mondet.org>"
+authors: ["Sebastien Mondet <seb@mondet.org>"]
+available: [ ocaml-version >= "4.01.0" ]
+homepage: "https://github.com/smondet/makmash"
+dev-repo: "https://github.com/smondet/makmash.git"
+bug-reports: "https://github.com/smondet/makmash/issues"
+build: ["./mk"]
+install: ["cp" "makmash" bin]
+remove: ["rm" "-f" "%{bin}%/makmash"]
 depends: [
   "ocamlfind"
   "sosa" "nonstd"
   "ppx_blob"
   "omd"
-  "higlo"
+  "higlo" {>= "0.5"}
 ]
 
