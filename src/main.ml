@@ -99,7 +99,7 @@ let markdown_to_html s =
             let (_ : Higlo.lexer) = Higlo.get_lexer lang in
             Some (
               "<pre>"
-              ^ (Higlo.to_xtmpl ~lang code |> Xtmpl.string_of_xmls)
+              ^ (Higlo.to_xml ~lang code |> Xtmpl_xml.to_string)
               ^ "</pre>")
           with e ->
             eprintf "Exn: %s\n%!" (Printexc.to_string e);

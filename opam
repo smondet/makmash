@@ -13,6 +13,6 @@ depends: [
   "sosa" "nonstd"
   "ppx_blob"
   "omd"
-  "higlo"
+  "higlo" {>= "0.5"}
 ]
 
