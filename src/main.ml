@@ -44,6 +44,20 @@ let markdown_to_html s =
         | `Itemize args -> next_list_itemizes := Some args; Some ""
         | `None -> None
         end
+      | Ol ol ->
+        begin match !next_list_itemizes with
+        | None  -> None
+        | Some args ->
+          let ulhtml =
+            sprintf "<ol>%s</ol>"
+              (List.map ol ~f:(fun omd ->
+                   sprintf "<li class=\"fragment roll-in\">%s</li>"
+                     (omd_to_html omd))
+               |> String.concat ~sep:"\n")
+          in
+          next_list_itemizes := None;
+          Some ulhtml
+        end
       | Ul ul ->
         begin match !next_list_itemizes with
         | None  -> None
