@@ -21,7 +21,7 @@ let markdown_to_html s =
     | "itemize" :: more -> `Itemize more
     | other -> `None
   in
-  let next_list_itermizes = ref None in
+  let next_list_itemizes = ref None in
   let rec omd_to_html md =
     let override =
       let open Omd_representation in
@@ -41,11 +41,25 @@ let markdown_to_html s =
         Some (sprintf "</section><section><h3>%s</h3>" (omd_to_html h3))
       | Html_comment c ->
         begin match check_comment c with
-        | `Itemize args -> next_list_itermizes := Some args; Some ""
+        | `Itemize args -> next_list_itemizes := Some args; Some ""
         | `None -> None
         end
+      | Ol ol ->
+        begin match !next_list_itemizes with
+        | None  -> None
+        | Some args ->
+          let ulhtml =
+            sprintf "<ol>%s</ol>"
+              (List.map ol ~f:(fun omd ->
+                   sprintf "<li class=\"fragment roll-in\">%s</li>"
+                     (omd_to_html omd))
+               |> String.concat ~sep:"\n")
+          in
+          next_list_itemizes := None;
+          Some ulhtml
+        end
       | Ul ul ->
-        begin match !next_list_itermizes with
+        begin match !next_list_itemizes with
         | None  -> None
         | Some args ->
           let ulhtml =
@@ -55,7 +69,7 @@ let markdown_to_html s =
                      (omd_to_html omd))
                |> String.concat ~sep:"\n")
           in
-          next_list_itermizes := None;
+          next_list_itemizes := None;
           Some ulhtml
         end
       | Code_block (lang, code) ->
